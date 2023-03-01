@@ -29,18 +29,30 @@ public class Movement2D : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            player.AddForce(Vector3.left * movementspeed);
+            player.AddRelativeForce(Vector3.left * movementspeed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            player.AddForce(Vector3.left * -movementspeed);
+            player.AddRelativeForce(Vector3.left * -movementspeed);
 
         }
         if (Input.GetKey(KeyCode.Space) && isgrounded)
         {
-            player.AddForce(Vector3.up * jumpheight); 
+            player.AddRelativeForce(Vector3.up * jumpheight); 
         }
        isgrounded = Physics.CheckSphere(feet.transform.position, 0.2f, groundMask);
+
+        GetAlignment(); 
     }
-    
+    void GetAlignment()
+    {
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position, -transform.up, out hit, 0.7f, groundMask);
+
+        Vector3 newUp = hit.normal;
+
+        transform.up = newUp; 
+
+    }
 }
