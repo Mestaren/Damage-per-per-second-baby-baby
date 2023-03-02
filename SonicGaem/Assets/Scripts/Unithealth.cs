@@ -37,5 +37,33 @@ public class Unithealth
 
     //construction
 
+    public Unithealth(int health, int MaxHealt)
+    {
+        _curentHealth = health;
+        _curentMaxHealth = MaxHealt;
 
+    }
+
+
+    //methods
+
+    public void DmgUnits(int dmgAmount)
+    {
+        if(_curentHealth > 0)
+        {
+            _curentHealth -= dmgAmount;
+        }
+    }
+
+    public void HealUnits(int healAmount)
+    {
+        if (_curentHealth < _curentMaxHealth)
+        {
+            _curentHealth += healAmount;
+        }
+        if(_curentHealth > _curentMaxHealth)
+        {
+            _curentHealth = _curentMaxHealth;
+        }
+    }
 }
