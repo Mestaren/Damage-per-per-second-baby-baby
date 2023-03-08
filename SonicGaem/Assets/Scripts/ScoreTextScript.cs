@@ -7,7 +7,7 @@ public class ScoreTextScript : MonoBehaviour
 {
    
     Text text;
-    public static int coinamount;
+    public static int coinAmount;
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class ScoreTextScript : MonoBehaviour
 
     private void Update()
     {
-        text.text = coinamount.ToString();
+        text.text = coinAmount.ToString();
     }
 
 }
