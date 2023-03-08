@@ -391,6 +391,8 @@ GameObject:
   - component: {fileID: 896336992}
   - component: {fileID: 896336991}
   - component: {fileID: 896336990}
+  - component: {fileID: 896336994}
+  - component: {fileID: 896336993}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -497,6 +499,33 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &896336993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896336988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636f2ca5415027f47bb40df8cb688c52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1100974025}
+  offset: {x: 0, y: 0, z: 0}
+--- !u!65 &896336994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896336988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1100974019
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +541,7 @@ GameObject:
   - component: {fileID: 1100974021}
   - component: {fileID: 1100974020}
   - component: {fileID: 1100974026}
+  - component: {fileID: 1100974027}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -639,6 +669,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79998ac2a5df1a2488aba1d787fbc8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1100974027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100974019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffe3914431398f419279682c86df998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1663859391
