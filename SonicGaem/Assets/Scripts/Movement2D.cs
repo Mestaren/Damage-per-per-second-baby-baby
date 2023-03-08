@@ -6,11 +6,14 @@ public class Movement2D : MonoBehaviour
 {
 
     public Rigidbody player; 
-    private float movementspeed = 5f;
+    private float movementspeed = 50f;
     private bool isgrounded;
-    private float jumpheight = 10f;
+    private float jumpheight = 100f;
     public GameObject feet;
     LayerMask groundMask;
+    private bool isstandingstill;
+    private float spindashSpeed = 100000/2f;
+    private bool chargingSpinDash; 
 
     
 
@@ -27,6 +30,8 @@ public class Movement2D : MonoBehaviour
 
     void Update()
     {
+
+        // RegularMovement 
         if (Input.GetKey(KeyCode.D))
         {
             player.AddRelativeForce(Vector3.left * movementspeed);
@@ -40,15 +45,38 @@ public class Movement2D : MonoBehaviour
         {
             player.AddRelativeForce(Vector3.up * jumpheight); 
         }
+        // GroundAlignment 
        isgrounded = Physics.CheckSphere(feet.transform.position, 0.2f, groundMask);
 
-        GetAlignment(); 
+        GetAlignment();
+
+        //Spindash 
+        if (player.velocity.magnitude == 0.0f)
+        {
+            isstandingstill = true;
+            Debug.Log("Still");
+        }
+        else
+        {
+            isstandingstill = false;
+            Debug.Log("Moving");
+        }
+
+        if(Input.GetKey(KeyCode.S) && isstandingstill && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            chargingSpinDash = true; 
+        }
+        
+        if(Input.GetKeyUp(KeyCode.LeftShift) && chargingSpinDash && isstandingstill)
+        {
+            player.AddRelativeForce(Vector3.left * spindashSpeed);
+        }
     }
     void GetAlignment()
     {
         RaycastHit hit;
 
-        Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundMask);
+        Physics.Raycast(transform.position, -transform.up, out hit, 1.2f, groundMask);
 
         Vector3 newUp = hit.normal;
 

@@ -5,12 +5,17 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     public Transform player;
-    public Vector3 offset; 
+    public Vector3 offset;
+    public float smoothspeed = 0.125f; 
    
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, offset.z); // Camera follows the player with specified offset position
+        Vector3 desiredPosition = player.position + offset;
+        Vector3 smoothedPosition = Vector3.Slerp(transform.position, desiredPosition, smoothspeed);
+        transform.position = smoothedPosition;
+
+        transform.LookAt(player); 
     }
 }
