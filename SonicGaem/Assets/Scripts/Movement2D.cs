@@ -48,7 +48,7 @@ public class Movement2D : MonoBehaviour
     {
         RaycastHit hit;
 
-        Physics.Raycast(transform.position, -transform.up, out hit, 0.7f, groundMask);
+        Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundMask);
 
         Vector3 newUp = hit.normal;
 
