@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GameObject player;
+
     void Start()
     {
-        
+        player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -24,6 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
         {
             PlayerHealing(10);
             Debug.Log(GameManager.gameManager._PlayerHealth.Health);
+        }
+
+        if(player == null)
+        {
+            Debug.Log("spawn new");
         }
 
     }
