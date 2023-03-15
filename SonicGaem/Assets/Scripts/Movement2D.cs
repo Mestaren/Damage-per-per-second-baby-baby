@@ -6,15 +6,17 @@ public class Movement2D : MonoBehaviour
 {
 
     public Rigidbody player; 
-    private float movementspeed = 50f;
+    private float movementspeed = 5000f;
     private bool isgrounded;
-    private float jumpheight = 100f;
+    private float jumpheight = 50000f;
     public GameObject feet;
     LayerMask groundMask;
     private bool isstandingstill;
-    private float spindashSpeed = 100000/2f;
+    private float spindashSpeed = 700000f;
     private bool chargingSpinDash;
     private bool rolling;
+
+    public bool useGravity = true; 
 
     public AudioSource jumpSound;
     public AudioSource SpinSoundEnd;
@@ -39,16 +41,16 @@ public class Movement2D : MonoBehaviour
         // RegularMovement 
         if (Input.GetKey(KeyCode.D))
         {
-            player.AddRelativeForce(Vector3.left * movementspeed);
+            player.AddRelativeForce(Vector3.left  * movementspeed * Time.deltaTime, ForceMode.Force);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            player.AddRelativeForce(Vector3.left * -movementspeed);
+            player.AddRelativeForce(Vector3.left * -movementspeed * Time.deltaTime, ForceMode.Force);
 
         }
         if (Input.GetKey(KeyCode.Space) && isgrounded)
         {
-            player.AddRelativeForce(Vector3.up * jumpheight);
+            player.AddRelativeForce(Vector3.up * jumpheight * Time.deltaTime);
             jumpSound.Play();
 
         }
@@ -58,7 +60,7 @@ public class Movement2D : MonoBehaviour
         GetAlignment();
 
         //Spindash 
-        if (player.velocity.magnitude == 0.0f)
+        if (player.velocity.magnitude < 0.2f)
         {
             isstandingstill = true;
             Debug.Log("Still");
@@ -79,14 +81,16 @@ public class Movement2D : MonoBehaviour
             rolling = true;
             Debug.Log("Rolling");
             movementspeed = 0.0f;
-            player.angularDrag = 0.0f; 
+            player.angularDrag = 0.0f;
+            player.drag = 0.0f; 
   
         }
         else
         {
             rolling = false;
-            movementspeed = 50f;
+            movementspeed = 5000f;
             player.angularDrag = 0.05f;
+            player.drag = 0.5f; 
         }
               
         if(Input.GetKey(KeyCode.S) && isstandingstill && Input.GetKeyDown(KeyCode.LeftShift))
@@ -95,14 +99,33 @@ public class Movement2D : MonoBehaviour
             SpinDashSound.Play();
         }
         
-        if(Input.GetKeyUp(KeyCode.LeftShift) && chargingSpinDash && isstandingstill)
+        if(Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill)
         {
-            player.AddRelativeForce(Vector3.left * spindashSpeed);
+            player.AddRelativeForce(Vector3.left * spindashSpeed * Time.deltaTime, ForceMode.Force);
             SpinSoundEnd.Play();
+            player.drag = 0; 
+        }
+        
+
+        if (isgrounded == false)
+        {
+            movementspeed = 5000f / 2; 
+        }
+        else
+        {
+            movementspeed = 5000f; 
         }
 
 
+        
+
     }
+    private void FixedUpdate()
+    {
+        player.useGravity = false;
+        if (useGravity) player.AddForce(Physics.gravity * (player.mass * player.mass)); 
+    }
+
     void GetAlignment()
     {
         RaycastHit hit;
