@@ -7,14 +7,16 @@ public class Movement2D : MonoBehaviour
 
     public Rigidbody player; 
     private float movementspeed = 5000f;
-    private bool isgrounded;
+    public bool isgrounded;
     private float jumpheight = 50000f;
     public GameObject feet;
     LayerMask groundMask;
     private bool isstandingstill;
-    private float spindashSpeed = 700000f;
+    private float spindashSpeed = 12000f;
     private bool chargingSpinDash;
     private bool rolling;
+    private bool facingLeft;
+    private bool facingRight; 
 
     public bool useGravity = true; 
 
@@ -42,10 +44,14 @@ public class Movement2D : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             player.AddRelativeForce(Vector3.left  * movementspeed * Time.deltaTime, ForceMode.Force);
+            facingRight = true;
+            facingLeft = false;
         }
         if (Input.GetKey(KeyCode.A))
         {
             player.AddRelativeForce(Vector3.left * -movementspeed * Time.deltaTime, ForceMode.Force);
+            facingRight = false;
+            facingLeft = true;
 
         }
         if (Input.GetKey(KeyCode.Space) && isgrounded)
@@ -99,13 +105,21 @@ public class Movement2D : MonoBehaviour
             SpinDashSound.Play();
         }
         
-        if(Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill)
+        if(Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill && facingRight)
         {
-            player.AddRelativeForce(Vector3.left * spindashSpeed * Time.deltaTime, ForceMode.Force);
+            player.AddRelativeForce(Vector3.left * spindashSpeed * Time.deltaTime, ForceMode.Impulse);
             SpinSoundEnd.Play();
-            player.drag = 0; 
+            player.drag = 0;
+            rolling = true;
         }
-        
+        if (Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill && facingLeft)
+        {
+            player.AddRelativeForce(Vector3.right * spindashSpeed * Time.deltaTime, ForceMode.Impulse);
+            SpinSoundEnd.Play();
+            player.drag = 0;
+            rolling = true;
+        }
+
 
         if (isgrounded == false)
         {
