@@ -24,7 +24,6 @@ private void OnDrawGizmos()
 
 }
 
-Follow script: -
 
 [SerializeField]
     private Transform[] routes;
