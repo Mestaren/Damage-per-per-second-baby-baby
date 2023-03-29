@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 336496736}
   - component: {fileID: 336496738}
   - component: {fileID: 336496739}
+  - component: {fileID: 336496740}
   m_Layer: 0
   m_Name: player
   m_TagString: player
@@ -831,6 +832,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climb: 5
+--- !u!114 &336496740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336496729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e924e4aecb5e4eb4098c9b522eb6035f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColour: {r: 1, g: 0, b: 0, a: 0.69411767}
+  regularColour: {r: 1, g: 1, b: 1, a: 0}
+  flashDuration: 0.07
+  numberOfFlashes: 5
+  triggerCollider: {fileID: 336496732}
 --- !u!1 &378097328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,6 +1836,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 336496729}
+  flashColour: {r: 0, g: 0, b: 0, a: 0}
+  regularColour: {r: 0, g: 0, b: 0, a: 0}
+  flashDuration: 0
+  numberOfFlashes: 0
+  triggerCollider: {fileID: 0}
+  mySprite: {fileID: 0}
 --- !u!65 &1540940442
 BoxCollider:
   m_ObjectHideFlags: 0
