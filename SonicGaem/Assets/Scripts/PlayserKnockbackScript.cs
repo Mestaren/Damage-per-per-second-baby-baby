@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayserKnockbackScript : MonoBehaviour
 {
     private float Range = 5f;
-    private float Knockbackforce = 15;
+    private float Knockbackforce = 25;
     public GameObject Player;
     LayerMask player;
     RaycastHit hit;
@@ -19,22 +19,26 @@ public class PlayserKnockbackScript : MonoBehaviour
     public Collider triggerCollider;
     public SpriteRenderer mySprite;
 
-    // Start is called before the first frame update
+    public iFrames iframe;
+    
     void Start()
     {
-        
+      iframe = GetComponent<iFrames>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         ShootRaycast();
+
         if(Physics.Raycast(transform.position, transform.up * Range, out hit))
         {
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
                 KnockBack();
+
+                Debug.Log("ouchies");
+
+                iframe.canGetHit = false;
             }
         }
     }

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class iFrames : MonoBehaviour
 {
-    public Color flashColour;
-    public Color regularColour;
-    public float flashDuration;
-    public int numberOfFlashes;
-    public Collider triggerCollider;
 
+    public bool canGetHit;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canGetHit = true;
     }
 
     // Update is called once per frame

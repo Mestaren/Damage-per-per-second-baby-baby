@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 336496730}
+  isgrounded: 0
   feet: {fileID: 1162241822}
   useGravity: 1
   jumpSound: {fileID: 0}
@@ -844,11 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e924e4aecb5e4eb4098c9b522eb6035f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColour: {r: 1, g: 0, b: 0, a: 0.69411767}
-  regularColour: {r: 1, g: 1, b: 1, a: 0}
-  flashDuration: 0.07
-  numberOfFlashes: 5
-  triggerCollider: {fileID: 336496732}
+  canGetHit: 1
 --- !u!1 &378097328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,6 +1839,7 @@ MonoBehaviour:
   numberOfFlashes: 0
   triggerCollider: {fileID: 0}
   mySprite: {fileID: 0}
+  iframe: {fileID: 336496740}
 --- !u!65 &1540940442
 BoxCollider:
   m_ObjectHideFlags: 0
