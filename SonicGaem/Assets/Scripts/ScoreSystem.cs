@@ -31,7 +31,9 @@ public class ScoreSystem : MonoBehaviour
 
             Debug.Log("EnemyDestroyed");
 
-            
+            movement.player.AddRelativeForce(Vector3.up * 250000f * Time.deltaTime);
+
+
         }
 
         
