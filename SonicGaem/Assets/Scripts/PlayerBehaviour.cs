@@ -26,11 +26,6 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log(GameManager.gameManager._PlayerHealth.Health);
         }
 
-        if(player == null)
-        {
-            Debug.Log("spawn new");
-        }
-
     }
 
     private void PlayerTakesDmg(int dmg)
@@ -42,6 +37,4 @@ public class PlayerBehaviour : MonoBehaviour
     {
         GameManager.gameManager._PlayerHealth.HealUnits(healing);
     }
-
-
 }
