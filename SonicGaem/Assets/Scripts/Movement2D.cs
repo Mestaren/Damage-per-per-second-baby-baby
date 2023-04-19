@@ -14,15 +14,19 @@ public class Movement2D : MonoBehaviour
     private bool isstandingstill;
     private float spindashSpeed = 12000f;
     private bool chargingSpinDash;
-    private bool rolling;
+    public bool rolling;
     private bool facingLeft;
-    private bool facingRight; 
+    private bool facingRight;
+
+    public CameraScript cameracript; 
 
     public bool useGravity = true; 
 
     public AudioSource jumpSound;
     public AudioSource SpinSoundEnd;
     public AudioSource SpinDashSound; 
+
+   
 
     
 
@@ -81,22 +85,24 @@ public class Movement2D : MonoBehaviour
         {
             SpinDashSound.Play();
 
+            
+
         }
         if (Input.GetKey(KeyCode.S) && isstandingstill == false && isgrounded)
         {
             rolling = true;
             Debug.Log("Rolling");
             movementspeed = 0.0f;
-            player.angularDrag = 0.0f;
-            player.drag = 0.0f; 
+            
+            player.freezeRotation = false;
   
         }
         else
         {
             rolling = false;
             movementspeed = 5000f;
-            player.angularDrag = 0.05f;
-            player.drag = 0.5f; 
+            
+            player.freezeRotation = true;
         }
               
         if(Input.GetKey(KeyCode.S) && isstandingstill && Input.GetKeyDown(KeyCode.LeftShift))
@@ -129,7 +135,7 @@ public class Movement2D : MonoBehaviour
         {
             movementspeed = 5000f; 
         }
-
+        
 
         
 
@@ -151,4 +157,5 @@ public class Movement2D : MonoBehaviour
         transform.up = newUp; 
 
     }
+    
 }

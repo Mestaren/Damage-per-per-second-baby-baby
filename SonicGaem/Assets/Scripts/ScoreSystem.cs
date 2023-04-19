@@ -25,7 +25,7 @@ public class ScoreSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && movement.isgrounded == false)
+        if (other.CompareTag("Enemy") && movement.isgrounded == false || movement.rolling == true)
         {
             Destroy(other.gameObject);
 
