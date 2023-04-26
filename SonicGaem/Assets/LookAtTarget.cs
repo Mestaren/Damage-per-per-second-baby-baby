@@ -5,32 +5,11 @@ using UnityEngine;
 public class LookAtTarget : MonoBehaviour
 {
     public Transform Target;
-    public float Speed = 1f;
 
-    private Coroutine LookCoroutine;
 
-    public void StartRotating()
+    private void Update()
     {
-        if (LookCoroutine != null)
-        {
-            StopCoroutine(LookCoroutine);
-        }
-
-        LookCoroutine = StartCoroutine(LookAt());
-    }
-
-    private IEnumerator LookAt()
-    {
-        Quaternion lookRotation = Quaternion.LookRotation(Target.position - transform.position);
-
-        float time = 0;
-        while (time < 0)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-
-            time += Time.deltaTime * Speed;
-
-            yield return null;
-        }
+        transform.LookAt(Target);
+        
     }
 }
