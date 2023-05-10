@@ -12,7 +12,7 @@ public class Movement2D : MonoBehaviour
     public GameObject feet;
     LayerMask groundMask;
     private bool isstandingstill;
-    private float spindashSpeed = 12000f;
+    private float spindashSpeed = 90000f;
     private bool chargingSpinDash;
     public bool rolling;
     private bool facingLeft;
@@ -113,14 +113,14 @@ public class Movement2D : MonoBehaviour
         
         if(Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill && facingRight)
         {
-            player.AddRelativeForce(Vector3.left * spindashSpeed * Time.deltaTime, ForceMode.Impulse);
+            player.AddRelativeForce(Vector3.left * spindashSpeed * Time.deltaTime, ForceMode.Acceleration);
             SpinSoundEnd.Play();
             player.drag = 0;
             rolling = true;
         }
         if (Input.GetKey(KeyCode.LeftShift) && chargingSpinDash && isstandingstill && facingLeft)
         {
-            player.AddRelativeForce(Vector3.right * spindashSpeed * Time.deltaTime, ForceMode.Impulse);
+            player.AddRelativeForce(Vector3.right * spindashSpeed * Time.deltaTime, ForceMode.Acceleration);
             SpinSoundEnd.Play();
             player.drag = 0;
             rolling = true;
@@ -129,11 +129,13 @@ public class Movement2D : MonoBehaviour
 
         if (isgrounded == false)
         {
-            movementspeed = 5000f / 2; 
+            movementspeed = 5000f / 2;
+            
         }
         else
         {
-            movementspeed = 5000f; 
+            movementspeed = 5000f;
+            player.AddRelativeForce(Vector3.up * -500f * Time.deltaTime, ForceMode.Acceleration);
         }
         
 
