@@ -55,7 +55,7 @@ public class followScript : MonoBehaviour
         }
 
         tParam = 0;
-        speedModifier = speedModifier * 0.90f;
+        //speedModifier = speedModifier * 0.90f;
         routeToGo += 1;
 
         if (routeToGo > routes.Length - 1)
