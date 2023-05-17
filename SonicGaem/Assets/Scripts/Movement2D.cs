@@ -6,7 +6,7 @@ public class Movement2D : MonoBehaviour
 {
 
     public Rigidbody player; 
-    private float movementspeed = 5000f;
+    public float movementspeed = 5000f;
     public bool isgrounded;
     private float jumpheight = 50000f;
     public GameObject feet;
