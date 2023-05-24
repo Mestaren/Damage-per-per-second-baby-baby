@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class killPlayer : MonoBehaviour
+public class loopEnabler : MonoBehaviour
 {
     public GameObject player;
-    public Transform respawnPoint;
-    bool isRotation = false;
+    public GameObject rotationPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,20 +15,13 @@ public class killPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isRotation)
-        {
-            player.transform.position = respawnPoint.position;
-        }
-
-
+        
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            isRotation = true;
-            
-
+            player.transform.parent = rotationPoint.transform;
         }
     }
 }
